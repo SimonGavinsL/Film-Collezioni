@@ -1,0 +1,18 @@
+$.ajax(
+    {
+        url:'https://api-m.mtime.cn/Showtime/LocationMovies.api',
+        data:{
+            locationId:'292'
+        },
+        type:'get',
+        dataType:'json',
+        async:true,
+        success:function(data){
+            alert(data.date);
+        },
+        error:function(data){
+            document.getElementById("AC_player").onIPtoLnglatError(ipstr);
+            //alert(JSON.stringify(data));
+        }
+    }
+);
