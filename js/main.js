@@ -3,7 +3,7 @@ function documentWrite(data) {
 
 
     document.writeln("<head>");
-    document.writeln("<title>Video Collezioni</title>");
+    document.writeln("<title>Film Collezioni</title>");
     document.writeln("<meta charset=\"UTF-8\" name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
     document.writeln("<link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">");
     document.writeln("</head>");
