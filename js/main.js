@@ -13,9 +13,9 @@ function documentWrite(data) {
 
     document.writeln("<nav aria-label=\"breadcrumb\" role=\"navigation\"><ol class=\"breadcrumb\">");
     document.writeln("<li class=\"breadcrumb-item\"><a href=\"#\">mTime</a></li>");
-    document.writeln("<li class=\"breadcrumb-item active\" aria-current=\"page\"><a href=\"#\">Douban</a></li>");
-    document.writeln("<li class=\"breadcrumb-item active\" aria-current=\"page\"><a href=\"#\">Omdb</a></li>");
-    document.writeln("<li class=\"breadcrumb-item active\" aria-current=\"page\"><a href=\"#\">Ignyte</a></li>");
+    document.writeln("<li class=\"breadcrumb-item\"><a href=\"#\">Douban</a></li>");
+    document.writeln("<li class=\"breadcrumb-item\"><a href=\"#\">Omdb</a></li>");
+    document.writeln("<li class=\"breadcrumb-item\"><a href=\"#\">Ignyte</a></li>");
     document.writeln("</ol></nav>");
 
     document.writeln("<div class=\"alert alert-info\" role=\"alert\">");
@@ -31,8 +31,8 @@ function documentWrite(data) {
 
         document.writeln("<div id=\"collapse"+(i+1).toString()+"\" class=\"collapse show\" role=\"tabpanel\" aria-labelledby=\"heading"+(i+1).toString()+"\" data-parent=\"#accordion\"><ul class=\"list-group\">");
         document.writeln("<li class=\"list-group-item\">Director: "+ data.movies[i].directorName + "</li>");
-        document.writeln("<li class=\"list-group-item\">Type:" + data.movies[i].type + "</li>");
-        document.writeln("<li class=\"list-group-item\">Actors:" + data.movies[i].actorName1 + " / " + data.movies[i].actorName2 + "</li>");
+        document.writeln("<li class=\"list-group-item\">Type: " + data.movies[i].type + "</li>");
+        document.writeln("<li class=\"list-group-item\">Actors: " + data.movies[i].actorName1 + " / " + data.movies[i].actorName2 + "</li>");
         document.writeln("</ul></div></div>");
     }
 
