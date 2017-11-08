@@ -10,7 +10,10 @@ $.ajax(
         success:function(data){
             console.log("SUCCESS: mTime");
             //document.getElementById("mtime").innerHTML=data.date;
+            document.open();
+            document.write("<head><title>Video Collezioni</title></head><body>")
             document.write("<link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">");
+
             document.write("<div class=\"container\">");
 
 
@@ -27,23 +30,53 @@ $.ajax(
                 "  </ol>\n" +
                 "</nav>");
 
+            // for (i in data.movies) {
+            //     document.write("<ul class=\"list-group\">");
+            //     document.write("<li class=\"list-group-item\">"+data.movies[i].titleEn+"</li>");
+            //     document.write("<li class=\"list-group-item\">Director: "+data.movies[i].directorName+"</li>");
+            //     document.write("<li class=\"list-group-item\">Type: "+data.movies[i].type+"</li>");
+            //     document.write("<li class=\"list-group-item\">Actors: "+data.movies[i].actorName1+" / "+data.movies[i].actorName2+"</li>");
+            //     document.write("</ul>");
+            // }
+
+
+            document.write("<div class=\"alert alert-info\" role=\"alert\">\n" +
+                "  Here are the recent films in theatres! Check it out!\n" +
+                "</div>");
+
+
+            document.write("<div id=\"accordion\" role=\"tablist\">");
             for (i in data.movies) {
-                document.write("<ul class=\"list-group\">");
-                document.write("<li class=\"list-group-item\">"+data.movies[i].titleEn+"</li>");
-                document.write("<li class=\"list-group-item\">Director: "+data.movies[i].directorName+"</li>");
-                document.write("<li class=\"list-group-item\">Type: "+data.movies[i].type+"</li>");
-                document.write("<li class=\"list-group-item\">Actors: "+data.movies[i].actorName1+" / "+data.movies[i].actorName2+"</li>");
-                document.write("</ul>");
+                document.write("<div class=\"card\">\n" +
+                    "            <div class=\"card-header\" role=\"tab\" id=\"heading"+i+"\">\n" +
+                    "                <h5 class=\"mb-0\">\n" +
+                    "                    <a data-toggle=\"collapse\" href=\"#collapse"+i+"\" aria-expanded=\"true\" aria-controls=\"collapse"+i+"\">\n" +
+                                            data.movies[i].titleEn +" " +data.movies[i].titleCn +
+                    "                    </a>\n" +
+                    "                </h5>\n" +
+                    "            </div>\n" +
+                    "\n" +
+                    "            <div id=\"collapse"+i+"\" class=\"collapse show\" role=\"tabpanel\" aria-labelledby=\"heading"+i+"\" data-parent=\"#accordion\">\n" +
+                    "\n" +
+                    "                <ul class=\"list-group\">\n" +
+                    "                    <li class=\"list-group-item\">Director: "+data.movies[i].directorName+"</li>\n" +
+                    "                    <li class=\"list-group-item\">Type:" +data.movies[i].type+"</li>\n" +
+                    "                    <li class=\"list-group-item\">Actors:" +data.movies[i].actorName1+" / "+data.movies[i].actorName2+"</li>\n" +
+                    "                </ul>\n" +
+                    "\n" +
+                    "            </div>\n" +
+                    "        </div>");
             }
-
-
-
-
-
-
-
-
             document.write("</div>");
+
+
+
+
+
+
+
+            document.write("</div></body>");
+            document.close();
         },
         error:function(data){
             console.log("ERROR: mTime");
