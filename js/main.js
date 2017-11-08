@@ -1,3 +1,52 @@
+function documentWrite(data) {
+    document.open();
+
+
+    document.writeln("<head>");
+    document.writeln("<title>Video Collezioni</title>");
+    document.writeln("<meta charset=\"UTF-8\" name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
+    document.writeln("<link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">");
+    document.writeln("</head>");
+
+
+    document.writeln("<body><div class=\"container\">");
+
+    document.writeln("<nav aria-label=\"breadcrumb\" role=\"navigation\"><ol class=\"breadcrumb\">");
+    document.writeln("<li class=\"breadcrumb-item\"><a href=\"#\">mTime</a></li>");
+    document.writeln("<li class=\"breadcrumb-item active\" aria-current=\"page\"><a href=\"#\">Douban</a></li>");
+    document.writeln("<li class=\"breadcrumb-item active\" aria-current=\"page\"><a href=\"#\">Omdb</a></li>");
+    document.writeln("<li class=\"breadcrumb-item active\" aria-current=\"page\"><a href=\"#\">Ignyte</a></li>");
+    document.writeln("</ol></nav>");
+
+    document.writeln("<div class=\"alert alert-info\" role=\"alert\">");
+    document.write("Here are the recent films in cinemas! Check it out!");
+    document.writeln("</div>");
+
+    document.writeln("<div id=\"accordion\" role=\"tablist\">");
+    for (i in data.movies) {
+        document.writeln("<div class=\"card\">");
+        document.writeln("<div class=\"card-header\" role=\"tab\" id=\"heading"+(i+1).toString()+"\"><h5 class=\"mb-0\"><a data-toggle=\"collapse\" href=\"#collapse"+(i+1).toString()+"\" aria-expanded=\"true\" aria-controls=\"collapse"+(i+1).toString()+"\">");
+        document.write(data.movies[i].titleEn + " " + data.movies[i].titleCn);
+        document.writeln("</a></h5></div>");
+
+        document.writeln("<div id=\"collapse"+(i+1).toString()+"\" class=\"collapse show\" role=\"tabpanel\" aria-labelledby=\"heading"+(i+1).toString()+"\" data-parent=\"#accordion\"><ul class=\"list-group\">");
+        document.writeln("<li class=\"list-group-item\">Director: "+ data.movies[i].directorName + "</li>");
+        document.writeln("<li class=\"list-group-item\">Type:" + data.movies[i].type + "</li>");
+        document.writeln("<li class=\"list-group-item\">Actors:" + data.movies[i].actorName1 + " / " + data.movies[i].actorName2 + "</li>");
+        document.writeln("</ul></div></div>");
+    }
+
+    document.writeln("</div></div>");
+
+    document.writeln("<script src=\"js/jquery-3.2.1.min.js\"></script>");
+    document.writeln("<script src=\"js/bootstrap.min.js\"></script>");
+
+    document.writeln("</body>");
+
+
+    document.close();
+}
+
 $.ajax(
     {
         url:'https://api-m.mtime.cn/PageSubArea/HotPlayMovies.api',
@@ -9,74 +58,7 @@ $.ajax(
         async:true,
         success:function(data){
             console.log("SUCCESS: mTime");
-            //document.getElementById("mtime").innerHTML=data.date;
-            document.open();
-            document.write("<head><title>Video Collezioni</title></head><body>")
-            document.write("<link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">");
-
-            document.write("<div class=\"container\">");
-
-
-
-
-
-
-            document.write("<nav aria-label=\"breadcrumb\" role=\"navigation\">\n" +
-                "  <ol class=\"breadcrumb\">\n" +
-                "    <li class=\"breadcrumb-item\"><a href=\"#\">mTime</a></li>\n" +
-                "    <li class=\"breadcrumb-item active\" aria-current=\"page\"><a href=\"#\">Douban</a></li>\n" +
-                "    <li class=\"breadcrumb-item active\" aria-current=\"page\"><a href=\"#\">Omdb</a></li>\n" +
-                "    <li class=\"breadcrumb-item active\" aria-current=\"page\"><a href=\"#\">Ignyte</a></li>\n" +
-                "  </ol>\n" +
-                "</nav>");
-
-            // for (i in data.movies) {
-            //     document.write("<ul class=\"list-group\">");
-            //     document.write("<li class=\"list-group-item\">"+data.movies[i].titleEn+"</li>");
-            //     document.write("<li class=\"list-group-item\">Director: "+data.movies[i].directorName+"</li>");
-            //     document.write("<li class=\"list-group-item\">Type: "+data.movies[i].type+"</li>");
-            //     document.write("<li class=\"list-group-item\">Actors: "+data.movies[i].actorName1+" / "+data.movies[i].actorName2+"</li>");
-            //     document.write("</ul>");
-            // }
-
-
-            document.write("<div class=\"alert alert-info\" role=\"alert\">\n" +
-                "  Here are the recent films in theatres! Check it out!\n" +
-                "</div>");
-
-
-            document.write("<div id=\"accordion\" role=\"tablist\">");
-            for (i in data.movies) {
-                document.write("<div class=\"card\">\n" +
-                    "            <div class=\"card-header\" role=\"tab\" id=\"heading"+i+"\">\n" +
-                    "                <h5 class=\"mb-0\">\n" +
-                    "                    <a data-toggle=\"collapse\" href=\"#collapse"+i+"\" aria-expanded=\"true\" aria-controls=\"collapse"+i+"\">\n" +
-                                            data.movies[i].titleEn +" " +data.movies[i].titleCn +
-                    "                    </a>\n" +
-                    "                </h5>\n" +
-                    "            </div>\n" +
-                    "\n" +
-                    "            <div id=\"collapse"+i+"\" class=\"collapse show\" role=\"tabpanel\" aria-labelledby=\"heading"+i+"\" data-parent=\"#accordion\">\n" +
-                    "\n" +
-                    "                <ul class=\"list-group\">\n" +
-                    "                    <li class=\"list-group-item\">Director: "+data.movies[i].directorName+"</li>\n" +
-                    "                    <li class=\"list-group-item\">Type:" +data.movies[i].type+"</li>\n" +
-                    "                    <li class=\"list-group-item\">Actors:" +data.movies[i].actorName1+" / "+data.movies[i].actorName2+"</li>\n" +
-                    "                </ul>\n" +
-                    "\n" +
-                    "            </div>\n" +
-                    "        </div>");
-            }
-            document.write("</div>");
-
-
-
-
-
-
-
-            document.write("</div></body>");
-            document.close();
+            documentWrite(data);
         },
         error:function(data){
             console.log("ERROR: mTime");
